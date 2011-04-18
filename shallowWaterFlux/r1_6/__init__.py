@@ -260,23 +260,18 @@ def main_standalone( argc, argv ):
 
 
 #--------------------------------------------------------------------------------------
-import sys, os
 from Foam import FOAM_VERSION
-if FOAM_VERSION( "<", "010600" ):
+if FOAM_VERSION( ">=", "010600" ):
+   if __name__ == "__main__" :
+     import sys, os
+     argv = sys.argv
+     os._exit( main_standalone( len( argv ), argv ) )
+     pass
+   pass
+else:
    from Foam.OpenFOAM import ext_Info
    ext_Info() << "\n\n To use this solver it is necessary to SWIG OpenFOAM-1.6 or higher\n"
    pass
 
 
 #--------------------------------------------------------------------------------------
-if FOAM_VERSION( ">=", "010600" ):
-   if __name__ == "__main__" :
-     argv = sys.argv
-     if len( argv ) >1 and argv[ 1 ]=="-test":
-        argv = None
-        test_dir= os.path.join( os.environ[ "PYFOAM_TESTING_DIR" ],'cases', 'propogated', 'r1.6', 'incompressible', 'shallowWaterFoam', 'squareBump' )
-        argv = [ __file__, "-case", test_dir ]
-        pass
-     os._exit( main_standalone( len( argv ), argv ) )
-     pass
-   pass
