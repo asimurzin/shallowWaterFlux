@@ -32,6 +32,13 @@ if FOAM_VERSION( ">=", "010600" ):
 
 
 #--------------------------------------------------------------------------------------
+from Foam import FOAM_VERSION
+if FOAM_VERSION( ">=", "020000" ):
+    from shallowWaterFlux.r2_0_0 import *
+    pass
+
+
+#--------------------------------------------------------------------------------------
 def entry_point():
     try:
        engine = main_standalone
