@@ -26,14 +26,14 @@
 
 #--------------------------------------------------------------------------------------
 from Foam import FOAM_VERSION
-if FOAM_VERSION( ">=", "010600" ):
+if FOAM_VERSION( ">=", "010600" ) and FOAM_VERSION( "<=", "010701" ):
     from shallowWaterFlux.r1_6 import *
     pass
 
 
 #--------------------------------------------------------------------------------------
 from Foam import FOAM_VERSION
-if FOAM_VERSION( ">=", "020000" ):
+if FOAM_VERSION( "==", "020000" ) or FOAM_VERSION( "==", "020001" ):
     from shallowWaterFlux.r2_0_0 import *
     pass
 
